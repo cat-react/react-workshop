@@ -1,45 +1,37 @@
 {
-  "name": "reveal.js",
-  "version": "3.4.1",
-  "description": "The HTML Presentation Framework",
-  "homepage": "http://lab.hakim.se/reveal-js",
-  "subdomain": "revealjs",
-  "main": "js/reveal.js",
-  "scripts": {
-    "test": "grunt test",
-    "start": "grunt serve"
-  },
-  "author": {
-    "name": "Hakim El Hattab",
-    "email": "hakim.elhattab@gmail.com",
-    "web": "http://hakim.se"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/hakimel/reveal.js.git"
+  "name": "presentation-react-workshop",
+  "version": "0.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "bespoke": "^1.0.0",
+    "bespoke-backdrop": "^1.0.0",
+    "bespoke-bullets": "^1.0.0",
+    "bespoke-forms": "^1.0.0",
+    "bespoke-hash": "^1.0.0",
+    "bespoke-keys": "^1.0.0",
+    "bespoke-progress": "^1.0.0",
+    "bespoke-scale": "^1.0.0",
+    "bespoke-theme-cube": "^2.0.0",
+    "bespoke-touch": "^1.0.0",
+    "debowerify": "^0.7.1",
+    "del": "^1.1.1",
+    "gh-pages": "^0.2.0",
+    "gulp": "^3.8.1",
+    "gulp-autoprefixer": "0.0.7",
+    "gulp-browserify": "^0.5.0",
+    "gulp-connect": "^2.0.5",
+    "gulp-csso": "^0.2.9",
+    "gulp-jade": "^0.6.0",
+    "gulp-plumber": "^0.6.3",
+    "gulp-rename": "^1.2.0",
+    "gulp-stylus": "^1.0.2",
+    "gulp-uglify": "^0.3.1",
+    "gulp-util": "^2.2.17",
+    "insert-css": "^0.2.0",
+    "opn": "^0.1.2",
+    "through": "^2.3.4"
   },
   "engines": {
-    "node": ">=4.0.0"
-  },
-  "dependencies": {
-    "express": "~4.14.0",
-    "grunt-cli": "~1.2.0",
-    "mustache": "~2.2.1",
-    "socket.io": "^1.4.8"
-  },
-  "devDependencies": {
-    "grunt": "~1.0.1",
-    "grunt-autoprefixer": "~3.0.3",
-    "grunt-contrib-connect": "~0.11.2",
-    "grunt-contrib-cssmin": "~0.14.0",
-    "grunt-contrib-jshint": "~0.11.3",
-    "grunt-contrib-qunit": "~1.2.0",
-    "grunt-contrib-uglify": "~0.9.2",
-    "grunt-contrib-watch": "~1.0.0",
-    "grunt-sass": "~1.2.0",
-    "grunt-retire": "~0.3.10",
-    "grunt-zip": "~0.17.1",
-    "node-sass": "~3.13.0"
-  },
-  "license": "MIT"
+    "node": ">=0.10.0"
+  }
 }
