@@ -14,62 +14,52 @@ html
       section
         h1 React Workshop
         img(src="./images/react.png", style="width: 150px")
+        p bring your npm up to date with
         pre
           code.language-javascript.
             npm install npm@latest -g
 
       section
-        h2 Keyboard Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-keys">bespoke-keys</a>
-
-      section
-        h2 Touch Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-touch">bespoke-touch</a>
-
-      section
-        h2 Responsive Slides
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-scale">bespoke-scale</a>
-
-      section
-        h2 Bullet List
-        h3.bullet Powered by <a href="https://github.com/markdalgleish/bespoke-bullets">bespoke-bullets</a>
+        h2 What's React? 🤔
         ul
-          li Bullet 1
-          li Bullet 2
-          li Bullet 3
+          li A Javascript Library for building user interfaces
+          li Component Based
+          li Unidirectional data flow
+          li JSX
 
       section
-        h2 Syntax Highlighting
-        h3 Powered by <a href="http://twitter.com/LeaVerou">Lea Verou</a>'s <a href="https://github.com/LeaVerou/prism">Prism</a>
-        pre
-          code.language-javascript.
-            bespoke.from('article', [
-              classes(),
-              keys(),
-              touch(),
-              bullets('li, .bullet')
-            ]);
-
-      section(data-bespoke-hash='named-route')
-        h2 Named Route
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-hash">bespoke-hash</a>
-        p Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.
+        h2 😴
+        img(src="https://media.giphy.com/media/14aVj10D1TwHu0/giphy.gif")
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
-        h2 Emphatic Slide!
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-backdrop">bespoke-backdrop</a>
+        h2 Let's get started! 🎉💻
 
       section
-        h2.bullet Just the beginning...
-        br
-        ul
-          li Edit <a href="http://jade-lang.com/">Jade</a> markup in <em>'src/index.jade'</em>
-          li Edit <a href="http://learnboost.github.io/stylus/">Stylus</a> styles in <em>'src/styles/main.styl'</em>
-          li Edit JavaScript in <em>'src/scripts/main.js'</em>
-        br
-        ul
-          li
-            strong Enjoy! :)
-            a(href='http://twitter.com/markdalgleish')  -@markdalgleish
+        h2 install&nbsp;
+          strong create-react-app
+        pre
+          code.language-javascript.
+            npm install -g create-react-app
+            create-react-app myfancyfirstapp
+
+      section
+        pre
+          code.language-javascript.
+            class App extends Component {
+              render() {
+                return (
+                  &ltdiv className="App">
+                    &ltdiv className="App-header">
+                      &ltimg src={logo} className="App-logo" alt="logo" />
+                      &lth2>Welcome to React</h2>
+                    &lt/div>
+                    &ltp className="App-intro">
+                      To get started, edit <code>src/App.js</code> and save to reload.
+                    &lt/p>
+                  &lt/div>
+                );
+              }
+            }
+
 
     script(src='build/build.js')
