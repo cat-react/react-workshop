@@ -51,15 +51,109 @@ html
                   &ltdiv className="App">
                     &ltdiv className="App-header">
                       &ltimg src={logo} className="App-logo" alt="logo" />
-                      &lth2>Welcome to React</h2>
+                      &lth2>Welcome to React&lt/h2>
                     &lt/div>
                     &ltp className="App-intro">
-                      To get started, edit <code>src/App.js</code> and save to reload.
+                      To get started, edit &ltcode>src/App.js&lt/code> and save to reload.
                     &lt/p>
                   &lt/div>
                 );
               }
             }
+        h2 😨
 
+      section
+        h2 delete everything! 🙌
+        pre
+          code.language-javascript.
+            class App extends Component {
+              render() {
+                return (
+                  &ltdiv>Hello World!&lt/div>
+                );
+              }
+            }
+
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 JSX
+        pre
+          code.language-javascript.
+            function getCompanyElement() {
+              var company = "Catalysts";
+              return &ltdiv>Hello {company}!&lt/div>
+            }
+
+      section
+        h2 Component
+        ul
+          li
+            i "Components let you split the UI into independent, reusable pieces, and think about each piece in isolation."
+          li
+            i "Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen."
+
+      section
+        h3 Class Component
+        pre
+          code.language-javascript.
+            import React from 'react';
+
+            class Company extends React.Component {
+              render() {
+                return (
+                  &ltdiv>company: Catalysts&lt/div>
+                )
+              }
+            }
+
+      selection
+        h3 Functional Component
+        pre
+          code.language-javascript.
+            function Company(props) {
+              return &ltdiv>company: Catalysts&lt/div>
+            }
+
+
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 Why use Class Components? 🤔
+        ul
+          li &nbsp
+          li Lifecycle Hooks & other APIs
+          li State
+
+      section
+        h3 Lifecycle Hooks
+        div(style="text-align: left;")
+          code componentWillMount()
+          br
+          code ❗ componentDidMount()
+          br
+          code componentWillReceiveProps(nextProps)
+          br
+          code ❗ shouldComponentUpdate(nextProps, nextState)
+          br
+          code componentWillUpdate(nextProps, nextState)
+          br
+          code componentDidUpdate(prevProps, prevState)
+          br
+          code componentWillUnmount()
+
+      selection
+        h3 Component Methods
+        code setState()
+        code ⛔ forceUpdate() ⛔
+        br
+
+        h3 Component Properties
+        code props
+        code defaultProps
+        code displayName
+        code state
+
+      section
+        h3 State
+
+      section
+        h2 Props
 
     script(src='build/build.js')
