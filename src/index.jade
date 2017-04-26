@@ -138,7 +138,7 @@ html
           br
           code componentWillUnmount()
 
-      selection
+      section
         h3 Component Methods
         code setState()
         code ⛔ forceUpdate() ⛔
@@ -151,9 +151,91 @@ html
         code state
 
       section
-        h3 State
+        h3 Props
+        code.language-javascript.
+          &ltCompany name="Catalysts"/>
+        br
+        pre
+          code.language-javascript.
+            class Company extends React.Component {
+              render() {
+                return (
+                  &ltdiv>company: {this.props.name}&lt/div>
+                );
+              }
+            }
 
       section
-        h2 Props
+        h3 Functional Components
+        code.language-javascript.
+          &ltCompany name="Catalysts"/>
+        br
+        pre
+          code.language-javascript.
+            function Company({name}}) {
+              return &ltdiv>company: {name}}&lt/div>
+            }
+
+      section
+        h3 PropTypes
+        pre
+          code.language-javascript.
+            Company.propTypes = {
+              name: PropTypes.string.isRequired
+            }
+
+      section
+        pre
+          code.language-javascript.
+            class Company extends React.Component {
+              static propTypes = {
+                /* name of the company */
+                name: PropTypes.string.isRequired
+              }
+
+              render() {
+                return (
+                  &ltdiv>company: {this.props.name}&lt/div>
+                );
+              }
+            }
+
+      section
+        h3 Default props
+        pre
+          code.language-javascript.
+            class Company extends React.Component {
+              static propTypes = {
+                /* name of the company */
+                name: PropTypes.string
+              }
+
+              render() {
+                return (
+                  &ltdiv>company: {this.props.name.toUpperCase()}&lt/div>
+                );
+              }
+            }
+
+            function CompanyList() {
+              return &ltCompany/>
+            }
+
+      section
+        <iframe src="https://www.webpackbin.com/bins/-KidWz3BVGe3Zqvqm6Ux" frameborder="0" width="800" height="500"></iframe>
+
+      section
+        ul
+          li
+            pre
+              code.language-javascript.
+                return (
+                  &ltdiv>company: {this.props.name ? this.props.name.toUpperCase() : ''}&lt/div>
+                );
+          li
+
+
+      section
+        h3 State
 
     script(src='build/build.js')
