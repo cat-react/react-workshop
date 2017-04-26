@@ -20,7 +20,8 @@ var pkg = require('./package.json'),
   isDist = process.argv.indexOf('serve') === -1;
 
 gulp.task('js', ['clean:js'], function() {
-  return gulp.src('src/scripts/main.js')
+  return gulp
+    .src('src/scripts/main.js')
     .pipe(isDist ? through() : plumber())
     .pipe(browserify({ transform: ['debowerify'], debug: !isDist }))
     .pipe(isDist ? uglify() : through())
@@ -30,7 +31,8 @@ gulp.task('js', ['clean:js'], function() {
 });
 
 gulp.task('html', ['clean:html'], function() {
-  return gulp.src('src/index.jade')
+  return gulp
+    .src('src/index.jade')
     .pipe(isDist ? through() : plumber())
     .pipe(jade({ pretty: true }))
     .pipe(rename('index.html'))
@@ -39,13 +41,16 @@ gulp.task('html', ['clean:html'], function() {
 });
 
 gulp.task('css', ['clean:css'], function() {
-  return gulp.src('src/styles/main.styl')
+  return gulp
+    .src('src/styles/main.styl')
     .pipe(isDist ? through() : plumber())
-    .pipe(stylus({
-      // Allow CSS to be imported from node_modules and bower_components
-      'include css': true,
-      'paths': ['./node_modules', './bower_components']
-    }))
+    .pipe(
+      stylus({
+        // Allow CSS to be imported from node_modules and bower_components
+        'include css': true,
+        paths: ['./node_modules', './bower_components']
+      })
+    )
     .pipe(autoprefixer('last 2 versions', { map: false }))
     .pipe(isDist ? csso() : through())
     .pipe(rename('build.css'))
@@ -54,7 +59,8 @@ gulp.task('css', ['clean:css'], function() {
 });
 
 gulp.task('images', ['clean:images'], function() {
-  return gulp.src('src/images/**/*')
+  return gulp
+    .src('src/images/**/*')
     .pipe(gulp.dest('dist/images'))
     .pipe(connect.reload());
 });
@@ -81,23 +87,27 @@ gulp.task('clean:images', function(done) {
 
 gulp.task('connect', ['build'], function() {
   connect.server({
+    port: 7000,
     root: 'dist',
     livereload: true
   });
 });
 
-gulp.task('open', ['connect'], function (done) {
-  opn('http://localhost:8080', done);
+gulp.task('open', ['connect'], function(done) {
+  opn('http://localhost:7000', done);
 });
 
 gulp.task('watch', function() {
   gulp.watch('src/**/*.jade', ['html']);
   gulp.watch('src/styles/**/*.styl', ['css']);
   gulp.watch('src/images/**/*', ['images']);
-  gulp.watch([
-    'src/scripts/**/*.js',
-    'bespoke-theme-*/dist/*.js' // Allow themes to be developed in parallel
-  ], ['js']);
+  gulp.watch(
+    [
+      'src/scripts/**/*.js',
+      'bespoke-theme-*/dist/*.js' // Allow themes to be developed in parallel
+    ],
+    ['js']
+  );
 });
 
 gulp.task('deploy', ['build'], function(done) {
