@@ -1,3 +1,7 @@
+<img src="https://cdn.worldvectorlogo.com/logos/react.svg" width="150"/> 
+
+**_presentation for the first react workshop at catalysts made by [Dominik Sumer](https://github.com/dsumer) and [David Jöch](https://github.com/zwenza)_**
+
 # React Workshop
 > A [Bespoke.js](http://markdalgleish.com/projects/bespoke.js) presentation, built with [generator-bespoke](https://github.com/markdalgleish/generator-bespoke)
 
