@@ -242,9 +242,6 @@ html
             }
 
       section
-        <iframe src="https://www.webpackbin.com/bins/-KidWz3BVGe3Zqvqm6Ux" frameborder="0" width="800" height="500"></iframe>
-
-      section
         ul
           li
             pre
@@ -253,9 +250,115 @@ html
                   &ltdiv>company: {this.props.name ? this.props.name.toUpperCase() : ''}&lt/div>
                 );
           li
-
+            pre
+              code.language-javascript.
+                componentDidMount() {
+                  if(this.props.name === undefined){
+                    this.props.name = ''
+                  }
+                }
 
       section
-        h3 State
+        h3 use default props ❗
+        pre
+          code.language-javascript.
+            class Company extends React.Component {
+              static propTypes = {
+                /* name of the company */
+                name: PropTypes.string
+              }
+
+              static defaultProps = {
+                name: 'Catalysts'
+              }
+
+              render() {
+                return (
+                  &ltdiv>company: {this.props.name.toUpperCase()}&lt/div>
+                );
+              }
+            }
+
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 State
+
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 Container & Presentational Components
+
+      section
+        h3 benefits of this approach
+        ul
+          li &nbsp
+          li Better separation of concerns.
+          li Better reusability.
+          li Presentational components are essentially your app’s “palette”.
+
+      section
+        h3 Presentational Component
+        pre
+          code.language-javascript.
+            class Company extends React.Component {
+              render() {
+                return (
+                  &ltdiv>company: {this.props.name.toUpperCase()}&lt/div>
+                );
+              }
+            }
+
+      section
+        //- TODO: test me !!
+        h3 Container Component
+        pre
+          code.language-javascript.
+            class CompanyList extends React.Component {
+              constructor() {
+                super();
+                this.state = {
+                  companies: [{
+                    name: 'Catalysts'
+                  }, {
+                    name: 'Google'
+                  }]
+                }
+              }
+              render() {
+                return (
+                  &ltdiv>
+                    {
+                      this.state.companies.map(company => {
+                        return &ltCompany name={company.name}/>
+                      })
+                    }
+                  &lt/div>
+                );
+              }
+            }
+
+      section
+        h2 Presentation Components
+        ul
+          li Are concerned with how things look
+          li Have no dependencies on the rest of the app, such as Flux actions or stores.
+          li Receive data and callbacks exclusively via props.
+          li Rarely have their own state (when they do, it’s UI state rather than data).
+          li Are written as &nbsp
+            strong functional components &nbsp
+            | unless they need state, lifecycle hooks, or performance optimizations.
+
+      section
+        h3 Presentational Component
+        pre
+          code.language-javascript.
+            function Company({name}}) {
+              return &ltdiv>company: {name}}&lt/div>
+            }
+
+      section
+        h2 Container Components
+        ul
+          li Are concerned with how things work.
+          li Provide the data and behavior to presentational or other container components.
+          li Are often stateful, as they tend to serve as data sources.
+          li Are usually generated using higher order components.
 
     script(src='build/build.js')
