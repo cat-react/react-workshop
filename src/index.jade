@@ -37,6 +37,7 @@ html
           li learn once - use everywhere
           li painless releases
           li awesome gigantic community
+          li bunch of useful opensource components
 
       section
         h2 😴
@@ -281,6 +282,29 @@ html
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 State
+        ul
+          li How can I bring my Component to life?
+          
+      section
+        h3 Each Component has its own State
+          
+      section
+        h3 State is immutable
+        ul
+          li Update-algorithm detects changes
+          li Only updates the necessary parts of your app/component
+        br
+        ul
+          li Don't modify the state directly!
+            pre
+              code.language-javascript.
+                // Wrong
+                this.state.variable = 'abc';
+                
+      section
+        h3 How to update the State correctly?
+        ul
+          li &nbsp;
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 Container & Presentational Components
