@@ -101,16 +101,45 @@ html
           li javascript syntax extension
           li catch errors already with linter
           li HTML like but not 100% equal
-          li not only for Web also for native development usable
-          //- todo: add lint error example
+          li also for native development
+
+      section
+        img(src="./images/lint_error.png", width="150%;")
+
+      section
+        img(src="./images/prettier_error.png", width="150%;")
+
+      section
+        h3 HTML in JavaScript
+        pre
+          code.language-javascript.
+            function getCompanyElement() {
+              var company = "Catalysts";
+              return &ltdiv>Hello {company}!&lt/div>
+            }
+
+            render() {
+              return (
+                &ltdiv>{this.getCompanyElement()}&lt/div>
+              )
+            }
+
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 Components
+        i "Components let you split the UI into independent, reusable pieces, and think about each piece in isolation."
+        //- TODO: components bsp pic here
 
       section
         h2 Components
         ul
           li
-            i "Components let you split the UI into independent, reusable pieces, and think about each piece in isolation."
-          li
             i "Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen."
+          li
+            pre
+              code.language-javascript.
+                function Company(props) {
+                  return &ltdiv>company: {props.companyname}}&lt/div>
+                }
 
       section
         h3 Class Component
@@ -134,7 +163,6 @@ html
               return &ltdiv>company: Catalysts&lt/div>
             }
 
-
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 Why use Class Components? 🤔
         ul
@@ -157,7 +185,7 @@ html
           br
           code componentDidUpdate(prevProps, prevState)
           br
-          code componentWillUnmount()
+          code ❗ componentWillUnmount()
 
       section
         h3 Component Methods
@@ -306,6 +334,13 @@ html
         ul
           li &nbsp;
 
+      section
+        h2 Example
+        ul
+          li we want to render a company with it's employees. Each company has a logo and a name. Each employee has a name and a job.
+          li
+            strong Try to create it on you own!
+
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 Container & Presentational Components
 
@@ -321,38 +356,39 @@ html
         h3 Presentational Component
         pre
           code.language-javascript.
-            class Company extends React.Component {
-              render() {
-                return (
-                  &ltdiv>company: {this.props.name.toUpperCase()}&lt/div>
-                );
-              }
+            const Employee = props => {
+                return &ltdiv>company: {props.name}&lt/div>
             }
 
       section
-        //- TODO: test me !!
         h3 Container Component
         pre
           code.language-javascript.
-            class CompanyList extends React.Component {
+            export default class Company extends Component {
               constructor() {
                 super();
                 this.state = {
-                  companies: [{
-                    name: 'Catalysts'
-                  }, {
-                    name: 'Google'
-                  }]
-                }
+                  name: 'Catalysts',
+                  logo: 'logo.png',
+                  employees: [
+                    {
+                      name: 'Dominik Sumer',
+                      job: 'Software Engineer'
+                    },
+                    {
+                      name: 'David Joech',
+                      job: 'Software Engineer'
+                    }
+                  ]
+                };
               }
+
               render() {
                 return (
                   &ltdiv>
-                    {
-                      this.state.companies.map(company => {
-                        return &ltCompany name={company.name}/>
-                      })
-                    }
+                    &ltp>Company Name: {this.state.name}&lt/p>
+                    &ltimg src={this.state.logo} />
+                    &ltEmployeeList employees={this.state.employees} />
                   &lt/div>
                 );
               }
@@ -370,19 +406,146 @@ html
             | unless they need state, lifecycle hooks, or performance optimizations.
 
       section
-        h3 Presentational Component
-        pre
-          code.language-javascript.
-            function Company({name}}) {
-              return &ltdiv>company: {name}}&lt/div>
-            }
-
-      section
         h2 Container Components
         ul
           li Are concerned with how things work.
           li Provide the data and behavior to presentational or other container components.
           li Are often stateful, as they tend to serve as data sources.
           li Are usually generated using higher order components.
+
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 State Management
+
+      section
+        h3 Why do we need State Mangement Libraries?
+        ul
+          li &nbsp
+          li often you actually doesn't need any external library
+          li usually if you application holds more data
+          li if you start nesting components
+
+      section
+        h3 Whats the problem exactly?
+        img(src="./images/state_mangement.png", style="width: 80%")
+
+      section
+        h2 How do state mangement libaries solve this problem?
+
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 Redux
+
+      section
+        pre
+          code.language-json.
+            {
+              auth: {
+                token: '12985sadvASDKALDS1Asdflk350'
+              },
+              company: {
+                name: 'Catalysts',
+                employees: [
+                  {
+                    name: 'Dominik Sumer',
+                    job: 'Software Engineer'
+                  },
+                  {
+                    name: 'David Joech',
+                    job: 'Software Engineer'
+                  }
+                ]
+              }
+            }
+
+      section
+        h3 Example
+        pre
+          code.language-javascript.
+            class EmployeeList extends Component {
+              render() {
+                return (
+                  {
+                    this.props.employees.map(employee => {
+                      return &ltEmployee name={employee.name} job={employee.job}/>
+                    })
+                  }
+                );
+              }
+            }
+
+            const mapStateToProps = state => {
+              employees: state.company.employees
+            }
+
+            export default connect(mapStateToProps)(EmployeeList);
+
+
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 MobX
+
+      section
+        h3 Example
+        pre
+          code.language-javascript.
+            @observer
+            @inject('employees')
+            class EmployeeList extends Component {
+              render() {
+                return (
+                  {
+                    this.props.employees.get().map(employee => {
+                      return &ltEmployee name={employee.name} job={employee.job}/>
+                    })
+                  }
+                );
+              }
+            }
+
+            export default EmployeeList;
+
+      section
+        pre
+          code.language-json.
+            {
+              auth: {
+                token: '12985sadvASDKALDS1Asdflk350'
+              },
+              company: {
+                name: 'Catalysts',
+                employees: [
+                  {
+                    name: 'Dominik Sumer',
+                    job: 'Software Engineer'
+                  },
+                  {
+                    name: 'David Joech',
+                    job: 'Software Engineer'
+                  }
+                ]
+              }
+            }
+
+      section
+        h2 which one should i use?
+        ul
+          li &nbsp
+          li no one, if you can
+          li Redux, for large scale projects with experienced devs
+          li MobX, for smaller projects or devs who are new to react
+
+      section
+        h2 other useful popular libraries
+        ul
+          li &nbsp
+          li React Router
+          li Styled Components
+          li FlowType
+          li Next.js
+
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h1 Q&A
+
+      section
+        h1 thanks!
+        h2 and now let's go and grab some beers! 🍺🍻
 
     script(src='build/build.js')
