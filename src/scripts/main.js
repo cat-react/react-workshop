@@ -16,7 +16,7 @@ bespoke.from('article', [
   buildWars(),
   keys(),
   touch(),
-  bullets('li, .bullet'),
+  bullets('li:not(.instant), .bullet'),
   backdrop(),
   scale(),
   hash(),
