@@ -45,7 +45,6 @@ html
         ul
           li easy to learn & natural to use
           li Flux over MVC
-          li JSX
           li learn once - use everywhere
           li painless releases
           li awesome gigantic community
@@ -236,6 +235,18 @@ html
             function Company({name}}) {
               return &ltdiv>company: {name}}&lt/div>
             }
+            
+      section
+        h3 ES6 Sugar: Spread Operator
+        pre
+          code.language-javascript.
+            function App1() {
+              return &ltGreeting firstName="Ben" lastName="Hector" />;
+            }          
+            function App2() {
+              const props = {firstName: 'Ben', lastName: 'Hector'};
+              return &ltGreeting {...props} />;
+            }
 
       section
         h3 PropTypes
@@ -319,6 +330,21 @@ html
                 );
               }
             }
+            
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 Conditional Rendering
+            
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 Event Handling
+        
+      section
+        h3 Event Examples
+        
+      section
+        h3 Binding of Events
+        ul
+          li .bind Method
+          li Working with arrow functions
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 State
@@ -424,6 +450,21 @@ html
           li Provide the data and behavior to presentational or other container components.
           li Are often stateful, as they tend to serve as data sources.
           li Are usually generated using higher order components.
+          
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 Unit Testing
+        ul
+          li With Jest & Enzyme
+          
+      section
+        h3 Jest
+        ul
+          li JavaScript testing in general
+        
+      section
+        h3 Enzyme
+        ul
+          li Test your React Components
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 State Management
