@@ -405,6 +405,55 @@ html
             
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 Conditional Rendering
+        
+      section
+        h3 Rendering content based on a specific condition
+        ul
+          li Example: a list of employees
+            pre
+              code.language-javascript.
+                render() {
+                  return (
+                    &ltdiv>
+                      &ltul>
+                        {this.props.employees.map(employee => {
+                          return &ltli key={employee.id}>{employee.name}&lt/li>
+                        })}
+                      &lt/ul>
+                    &lt/div>
+                  )
+                }
+                
+      section
+        h3 Put the list in a seperate Component
+        pre
+          code.language-javascript.
+            render() {
+              return (
+                &ltdiv>
+                  &ltEmployeeList employees={this.props.employees} />
+                &lt/div>
+              )
+            }
+            
+      section
+        h3 different content when no employees are found
+        pre
+          code.language-javascript.
+            render() {
+              let content;         
+              if (this.props.employees.length > 0) {
+                content = &ltEmployeeList employees={this.props.employees} />
+              } else {
+                content = &ltspan>No employees found.&lt/span>     
+              }
+            
+              return (
+                &ltdiv>
+                  {content}
+                &lt/div>
+              )
+            }
             
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 Event Handling
