@@ -337,12 +337,28 @@ html
           li How can I bring my Component to life?
           
       section
-        h3 Each Component has its own State
+        h3 Re-render Components when data changes
+        ul
+          li <a href="https://www.webpackbin.com/bins/-Kj4MffG215rAsA8tRk3">https://www.webpackbin.com/bins/-Kj4MffG215rAsA8tRk3</a>
           
+      section
+        h3 Each Component has its own local state
+        ul
+          li state takes care of re-rendering
+          li ReactDOM.render only needs to be called once
+          li <br>set the initial state in the constructor
+            pre
+              code.language-javascript.
+                constructor(props) {
+                  super(props);
+                  this.state = {date: new Date()};
+                }
+
       section
         h3 State is immutable
         ul
-          li Update-algorithm detects changes
+          li state-history is more understandable
+          li Diffing-algorithm detects changes
           li Only updates the necessary parts of your app/component
         br
         ul
@@ -351,11 +367,34 @@ html
               code.language-javascript.
                 // Wrong
                 this.state.variable = 'abc';
+      
+      section
+        h3 Example diffing-algorithm
+        span on state-change, only the affected DOM elements get re-rendered
+        img(src="./images/state-change.png", style="width: 100%;margin: 20px;")
                 
       section
         h3 How to update the State correctly?
         ul
-          li &nbsp;
+          li use the setState function
+          li but use it wisely! it is not incremental
+          li use the "functional" setState
+            pre
+              code.language-javascript.
+                this.setState((prevState, props) => {
+                  count: prevState.count + props.increment
+                });
+                
+      section
+        h3 Problem when not using the functional approach
+        span state is being overridden when being called in the same update-cycle
+        pre
+          code.language-javascript.
+            // assuming state.count === 0
+            this.setState({count: state.count + 1});
+            this.setState({count: state.count + 1});
+            this.setState({count: state.count + 1});
+            // state.count === 1, not 3
 
       section
         h2 Example
