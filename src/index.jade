@@ -460,12 +460,64 @@ html
         
       section
         h3 Event Examples
-        
-      section
-        h3 Binding of Events
+        p support for all the html5 events you know
         ul
-          li .bind Method
-          li Working with arrow functions
+          li.instant &nbsp;
+          li.instant onClick
+          li.instant onChange
+          li.instant onFocus
+          li.instant onSubmit
+          li.instant onTouchStart
+          li.instant ...
+          
+      section
+        h3 Example button onClick
+        pre
+          code.language-javascript.
+            class App extends Component {
+              click(e) {
+                console.log(e);
+              }
+            
+              render() {              
+                return (
+                  &ltdiv>&ltbutton onClick={this.click}>clickme&lt/button>&lt/div>
+                );
+              }
+            }
+          
+      section
+        h3 Correct binding
+        pre
+          code.language-javascript.
+            class App extends Component {
+              constructor() {
+                this.click = this.click.bind(this);
+              }
+            
+              click(e) {
+                console.log(e);
+              }
+            
+              render() {              
+                return (
+                  &ltdiv>&ltbutton onClick={this.click}>clickme&lt/button>&lt/div>
+                );
+              }
+            }
+            
+      section
+        h3 not recommended to pass a function directly
+        pre
+          code.language-javascript.
+            class App extends Component {            
+              render() {              
+                return (
+                  &ltdiv>&ltbutton onClick={(e) => {console.log(e);}}>clickme&lt/button>&lt/div>
+                );
+              }
+            }
+        p creates a new function each render-cycle
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 Container & Presentational Components
