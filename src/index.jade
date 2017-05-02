@@ -518,6 +518,8 @@ html
               }
             }
         p creates a new function each render-cycle
+        
+      //TODO: discuss correct event binding with david
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 Container & Presentational Components
@@ -599,12 +601,59 @@ html
       section
         h3 Jest
         ul
+          li Framework developed by Facebook
           li JavaScript testing in general
+          li IntelliJ integration since 2017.1
         
       section
         h3 Enzyme
         ul
-          li Test your React Components
+          li Testing utilities for React
+          li Developed by AirBnB
+          li Different rendering modes for React components
+          li Simulate Events in your components
+          
+      section
+        h3 Folder structure
+        img(src="./images/folder_structure.png", style="width: 60%;margin:20px")
+        
+      section
+        h3 Write your first test
+        pre
+          code.language-javascript.
+            import React from 'react';
+            import {shallow} from 'enzyme';
+            import ActionButtons from './ActionButtons';
+            
+            describe('ActionButtons', () => {
+              it('should render submit button correctly', () => {
+                const okText = 'OK';
+                const component = shallow(&ltActionButtons textOk={okText} />);
+                expect(component.find('button[type="submit"]').text()).toBe(okText);
+              });
+            });
+            
+      section
+        h3 Enzyme Render Modes
+        ul
+          li shallow
+          li mount
+          li render
+          
+      section
+        h3 Simulate Events
+        pre
+          code.language-javascript.
+            function MyComponent(props) {
+              return &ltdiv>&ltbutton onClick={props.onButtonClick}>ClickMe&lt/button>&lt/div>;
+            }
+            
+            const mockOnClick = jest.fn();
+            const wrapper = mount(&ltMyComponent onButtonClick={mockOnClick} />);
+            wrapper.find(‘button’).simulate(‘click’);
+            expect(mockOnClick).toHaveBeenCalled();
+            
+      //TODO: adjust unittest-examples for fancyworkshopapp
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 State Management
