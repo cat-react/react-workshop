@@ -1,6 +1,9 @@
 {
   "name": "presentation-react-workshop",
   "version": "0.0.0",
+  "scripts": {
+    "start": "gulp serve"
+  },
   "dependencies": {},
   "devDependencies": {
     "bespoke": "^1.0.0",
