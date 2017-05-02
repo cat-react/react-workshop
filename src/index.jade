@@ -520,8 +520,6 @@ html
               }
             }
         p creates a new function each render-cycle
-        
-      //TODO: discuss correct event binding with david
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 Container & Presentational Components
@@ -606,6 +604,7 @@ html
           li Framework developed by Facebook
           li JavaScript testing in general
           li IntelliJ integration since 2017.1
+          li Easy generation of code coverage
         
       section
         h3 Enzyme
@@ -654,8 +653,6 @@ html
             const wrapper = mount(&ltMyComponent onButtonClick={mockOnClick} />);
             wrapper.find(‘button’).simulate(‘click’);
             expect(mockOnClick).toHaveBeenCalled();
-            
-      //TODO: adjust unittest-examples for fancyworkshopapp
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 State Management
