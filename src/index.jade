@@ -18,6 +18,18 @@ html
         pre
           code.language-javascript.
             npm install npm@latest -g
+            
+      section
+        h2 Agenda
+        ul
+          li &nbsp;
+          li What is React?
+          li Quick Start
+          li Learn the Basics (Components, State, Event Handling)
+          li Unit-Testing
+          li State Management
+          li Overview - Q&A
+          li Beer 🍺🍻
 
       section
         h2 What is React? 🤔
@@ -33,10 +45,10 @@ html
         ul
           li easy to learn & natural to use
           li Flux over MVC
-          li JSX
           li learn once - use everywhere
           li painless releases
           li awesome gigantic community
+          li bunch of useful opensource components
 
       section
         h2 😴
@@ -223,6 +235,18 @@ html
             function Company({name}}) {
               return &ltdiv>company: {name}}&lt/div>
             }
+            
+      section
+        h3 ES6 Sugar: Spread Operator
+        pre
+          code.language-javascript.
+            function App1() {
+              return &ltGreeting firstName="Ben" lastName="Hector" />;
+            }          
+            function App2() {
+              const props = {firstName: 'Ben', lastName: 'Hector'};
+              return &ltGreeting {...props} />;
+            }
 
       section
         h3 PropTypes
@@ -309,6 +333,68 @@ html
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 State
+        ul
+          li How can I bring my Component to life?
+          
+      section
+        h3 Re-render Components when data changes
+        ul
+          li <a href="https://www.webpackbin.com/bins/-Kj4MffG215rAsA8tRk3">https://www.webpackbin.com/bins/-Kj4MffG215rAsA8tRk3</a>
+          
+      section
+        h3 Each Component has its own local state
+        ul
+          li state takes care of re-rendering
+          li ReactDOM.render only needs to be called once
+          li <br>set the initial state in the constructor
+            pre
+              code.language-javascript.
+                constructor(props) {
+                  super(props);
+                  this.state = {date: new Date()};
+                }
+
+      section
+        h3 State is immutable
+        ul
+          li state-history is more understandable
+          li Diffing-algorithm detects changes
+          li Only updates the necessary parts of your app/component
+        br
+        ul
+          li Don't modify the state directly!
+            pre
+              code.language-javascript.
+                // Wrong
+                this.state.variable = 'abc';
+      
+      section
+        h3 Example diffing-algorithm
+        span on state-change, only the affected DOM elements get re-rendered
+        img(src="./images/state-change.png", style="width: 100%;margin: 20px;")
+                
+      section
+        h3 How to update the State correctly?
+        ul
+          li use the setState function
+          li but use it wisely! it is not incremental
+          li use the "functional" setState
+            pre
+              code.language-javascript.
+                this.setState((prevState, props) => {
+                  count: prevState.count + props.increment
+                });
+                
+      section
+        h3 Problem when not using the functional approach
+        span state is being overridden when being called in the same update-cycle
+        pre
+          code.language-javascript.
+            // assuming state.count === 0
+            this.setState({count: state.count + 1});
+            this.setState({count: state.count + 1});
+            this.setState({count: state.count + 1});
+            // state.count === 1, not 3
 
       section
         h2 Example
@@ -316,6 +402,124 @@ html
           li we want to render a company with it's employees. Each company has a logo and a name. Each employee has a name and a job.
           li
             strong Try to create it on you own!
+            
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 Conditional Rendering
+        
+      section
+        h3 Rendering content based on a specific condition
+        ul
+          li Example: a list of employees
+            pre
+              code.language-javascript.
+                render() {
+                  return (
+                    &ltdiv>
+                      &ltul>
+                        {this.props.employees.map(employee => {
+                          return &ltli key={employee.id}>{employee.name}&lt/li>
+                        })}
+                      &lt/ul>
+                    &lt/div>
+                  )
+                }
+                
+      section
+        h3 Put the list in a seperate Component
+        pre
+          code.language-javascript.
+            render() {
+              return (
+                &ltdiv>
+                  &ltEmployeeList employees={this.props.employees} />
+                &lt/div>
+              )
+            }
+            
+      section
+        h3 different content when no employees are found
+        pre
+          code.language-javascript.
+            render() {
+              let content;         
+              if (this.props.employees.length > 0) {
+                content = &ltEmployeeList employees={this.props.employees} />
+              } else {
+                content = &ltspan>No employees found.&lt/span>     
+              }
+            
+              return (
+                &ltdiv>
+                  {content}
+                &lt/div>
+              )
+            }
+            
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 Event Handling
+        
+      section
+        h3 Event Examples
+        p support for all the html5 events you know
+        ul
+          li.instant &nbsp;
+          li.instant onClick
+          li.instant onChange
+          li.instant onFocus
+          li.instant onSubmit
+          li.instant onTouchStart
+          li.instant ...
+          
+      section
+        h3 Example button onClick
+        pre
+          code.language-javascript.
+            class App extends Component {
+              click(e) {
+                console.log(e);
+              }
+            
+              render() {              
+                return (
+                  &ltdiv>&ltbutton onClick={this.click}>clickme&lt/button>&lt/div>
+                );
+              }
+            }
+          
+      section
+        h3 Correct binding
+        pre
+          code.language-javascript.
+            class App extends Component {
+              constructor() {
+                this.click = this.click.bind(this);
+              }
+            
+              click(e) {
+                console.log(e);
+              }
+            
+              render() {              
+                return (
+                  &ltdiv>&ltbutton onClick={this.click}>clickme&lt/button>&lt/div>
+                );
+              }
+            }
+            
+      section
+        h3 not recommended to pass a function directly
+        pre
+          code.language-javascript.
+            class App extends Component {            
+              render() {              
+                return (
+                  &ltdiv>&ltbutton onClick={(e) => {console.log(e);}}>clickme&lt/button>&lt/div>
+                );
+              }
+            }
+        p creates a new function each render-cycle
+        
+      //TODO: discuss correct event binding with david
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 Container & Presentational Components
@@ -388,6 +592,68 @@ html
           li Provide the data and behavior to presentational or other container components.
           li Are often stateful, as they tend to serve as data sources.
           li Are usually generated using higher order components.
+          
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 Unit Testing
+        ul
+          li With Jest & Enzyme
+          
+      section
+        h3 Jest
+        ul
+          li Framework developed by Facebook
+          li JavaScript testing in general
+          li IntelliJ integration since 2017.1
+        
+      section
+        h3 Enzyme
+        ul
+          li Testing utilities for React
+          li Developed by AirBnB
+          li Different rendering modes for React components
+          li Simulate Events in your components
+          
+      section
+        h3 Folder structure
+        img(src="./images/folder_structure.png", style="width: 60%;margin:20px")
+        
+      section
+        h3 Write your first test
+        pre
+          code.language-javascript.
+            import React from 'react';
+            import {shallow} from 'enzyme';
+            import ActionButtons from './ActionButtons';
+            
+            describe('ActionButtons', () => {
+              it('should render submit button correctly', () => {
+                const okText = 'OK';
+                const component = shallow(&ltActionButtons textOk={okText} />);
+                expect(component.find('button[type="submit"]').text()).toBe(okText);
+              });
+            });
+            
+      section
+        h3 Enzyme Render Modes
+        ul
+          li shallow
+          li mount
+          li render
+          
+      section
+        h3 Simulate Events
+        pre
+          code.language-javascript.
+            function MyComponent(props) {
+              return &ltdiv>&ltbutton onClick={props.onButtonClick}>ClickMe&lt/button>&lt/div>;
+            }
+            
+            const mockOnClick = jest.fn();
+            const wrapper = mount(&ltMyComponent onButtonClick={mockOnClick} />);
+            wrapper.find(‘button’).simulate(‘click’);
+            expect(mockOnClick).toHaveBeenCalled();
+            
+      //TODO: adjust unittest-examples for fancyworkshopapp
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 State Management
@@ -516,6 +782,13 @@ html
           li Styled Components
           li FlowType
           li Next.js
+          
+      section
+        h2 Links & helpful Resources
+        ul
+          li.instant React Docs & Tutorial: <a href="#">https://facebook.github.io/react</a>
+          li.instant markerikson's react-redux-links: <a href="#">https://github.com/markerikson/react-redux-links</a>
+          li.instant Community on Medium / Twitter
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h1 Q&A
