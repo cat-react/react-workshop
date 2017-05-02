@@ -151,7 +151,7 @@ html
             pre
               code.language-javascript.
                 function Company(props) {
-                  return &ltdiv>company: {props.companyname}}&lt/div>
+                  return &ltdiv>company: {props.companyname}&lt/div>
                 }
 
       section
@@ -234,8 +234,8 @@ html
         br
         pre
           code.language-javascript.
-            function Company({name}}) {
-              return &ltdiv>company: {name}}&lt/div>
+            function Company({name}) {
+              return &ltdiv>company: {name}&lt/div>
             }
             
       section
@@ -397,13 +397,6 @@ html
             this.setState({count: state.count + 1});
             this.setState({count: state.count + 1});
             // state.count === 1, not 3
-
-      section
-        h2 Example
-        ul
-          li we want to render a company with it's employees. Each company has a logo and a name. Each employee has a name and a job.
-          li
-            strong Try to create it on you own!
             
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 Conditional Rendering
@@ -456,70 +449,13 @@ html
                 &lt/div>
               )
             }
-            
-      section.emphatic-text(data-bespoke-backdrop='emphatic')
-        h2 Event Handling
-        
+
       section
-        h3 Event Examples
-        p support for all the html5 events you know
+        h2 Example
         ul
-          li.instant &nbsp;
-          li.instant onClick
-          li.instant onChange
-          li.instant onFocus
-          li.instant onSubmit
-          li.instant onTouchStart
-          li.instant ...
-          
-      section
-        h3 Example button onClick
-        pre
-          code.language-javascript.
-            class App extends Component {
-              click(e) {
-                console.log(e);
-              }
-            
-              render() {              
-                return (
-                  &ltdiv>&ltbutton onClick={this.click}>clickme&lt/button>&lt/div>
-                );
-              }
-            }
-          
-      section
-        h3 Correct binding
-        pre
-          code.language-javascript.
-            class App extends Component {
-              constructor() {
-                this.click = this.click.bind(this);
-              }
-            
-              click(e) {
-                console.log(e);
-              }
-            
-              render() {              
-                return (
-                  &ltdiv>&ltbutton onClick={this.click}>clickme&lt/button>&lt/div>
-                );
-              }
-            }
-            
-      section
-        h3 not recommended to pass a function directly
-        pre
-          code.language-javascript.
-            class App extends Component {            
-              render() {              
-                return (
-                  &ltdiv>&ltbutton onClick={(e) => {console.log(e);}}>clickme&lt/button>&lt/div>
-                );
-              }
-            }
-        p creates a new function each render-cycle
+          li we want to render a company with it's employees. Each company has a logo and a name. Each employee has a name and a job.
+          li
+            strong Try to create it on you own!
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 Container & Presentational Components
@@ -592,6 +528,70 @@ html
           li Provide the data and behavior to presentational or other container components.
           li Are often stateful, as they tend to serve as data sources.
           li Are usually generated using higher order components.
+            
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 Event Handling
+        
+      section
+        h3 Event Examples
+        p support for all the html5 events you know
+        ul
+          li.instant &nbsp;
+          li.instant onClick
+          li.instant onChange
+          li.instant onFocus
+          li.instant onSubmit
+          li.instant onTouchStart
+          li.instant ...
+          
+      section
+        h3 Example button onClick
+        pre
+          code.language-javascript.
+            class App extends Component {
+              click(e) {
+                console.log(e);
+              }
+            
+              render() {              
+                return (
+                  &ltdiv>&ltbutton onClick={this.click}>clickme&lt/button>&lt/div>
+                );
+              }
+            }
+          
+      section
+        h3 Correct binding
+        pre
+          code.language-javascript.
+            class App extends Component {
+              constructor() {
+                this.click = this.click.bind(this);
+              }
+            
+              click(e) {
+                console.log(e);
+              }
+            
+              render() {              
+                return (
+                  &ltdiv>&ltbutton onClick={this.click}>clickme&lt/button>&lt/div>
+                );
+              }
+            }
+            
+      section
+        h3 not recommended to pass a function directly
+        pre
+          code.language-javascript.
+            class App extends Component {            
+              render() {              
+                return (
+                  &ltdiv>&ltbutton onClick={(e) => {console.log(e);}}>clickme&lt/button>&lt/div>
+                );
+              }
+            }
+        p creates a new function each render-cycle
           
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 Unit Testing
@@ -674,6 +674,9 @@ html
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 Redux
+        
+      section
+        img(src="./images/redux_anim.gif", style="width: 80%;background:white;")
 
       section
         pre
@@ -788,6 +791,12 @@ html
           li.instant React Docs & Tutorial: <a href="#">https://facebook.github.io/react</a>
           li.instant markerikson's react-redux-links: <a href="#">https://github.com/markerikson/react-redux-links</a>
           li.instant Community on Medium / Twitter
+          li.instant <a href="https://www.reactiflux.com/">reactiflux discord channel</a>
+          
+      section
+        h2 React Vienna Meetup
+        img(src="./images/react_vienna.jpeg")
+        i Join the meetup every month!
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h1 Q&A
